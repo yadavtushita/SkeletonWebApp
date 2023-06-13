@@ -1,5 +1,11 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import com.sun.tools.javac.util.List;
+
 public class QueryProcessor {
 
   public String process(String query) {
@@ -15,6 +21,25 @@ public class QueryProcessor {
     if (query.toLowerCase().contains("your name")) {
       return "Tushita";
     }
+
+    if (query.toLowerCase().contains("largest")) {
+      String numbers = query.replace("Which of the following numbers is the largest: ", "");
+      String number = numbers.replace("?", "");
+      
+      String[] singleNumbers = number.split(",");
+      ArrayList<Integer> trimmedNos = new ArrayList<>();
+
+
+      for (String s: singleNumbers) {
+        trimmedNos.add(Integer.parseInt(s.trim()));
+      }
+
+      int max = trimmedNos.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+
+      
+      return String.valueOf(max);
+    }
+
     return "";
   }
 }

@@ -20,8 +20,13 @@ public class QueryProcessorTest {
     assertThat(queryProcessor.process("Shakespeare"), containsString("playwright"));
   }
 
-    @Test 
+  @Test 
   public void knowsName() {
     assertThat(queryProcessor.process("What is your name?"), containsString("Tushita"));
+  }
+
+  @Test 
+  public void knowsMaxNo() {
+    assertThat(queryProcessor.process("Which of the following numbers is the largest: 65, 4, 86?"), containsString("86"));
   }
 }
