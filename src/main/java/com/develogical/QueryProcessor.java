@@ -55,6 +55,21 @@ public class QueryProcessor {
       return String.valueOf(sum);
     }
 
+    if (query.toLowerCase().contains("multiplied")) {
+
+      String splitQuery = query.replace("What is", "");
+      String removePlus = splitQuery.replace("multiplied by", "");
+      String removeQuestion = removePlus.replace("?", "");
+      String[] numbers = removeQuestion.trim().split("  ");
+      int result = 1;
+
+      for (String n: numbers) {
+        result *= (int)Integer.parseInt(n.trim());
+      }
+
+      return String.valueOf(result);
+    }
+
     return "";
   }
 }
