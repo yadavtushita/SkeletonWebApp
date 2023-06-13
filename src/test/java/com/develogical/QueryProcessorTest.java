@@ -29,4 +29,9 @@ public class QueryProcessorTest {
   public void knowsMaxNo() {
     assertThat(queryProcessor.process("Which of the following numbers is the largest: 65, 4, 86?"), containsString("86"));
   }
+
+  @Test 
+  public void knowsPlus() {
+    assertThat(queryProcessor.process("What is 32 plus 59?"), containsString("91"));
+  }
 }

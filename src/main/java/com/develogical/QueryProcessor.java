@@ -25,7 +25,7 @@ public class QueryProcessor {
     if (query.toLowerCase().contains("largest")) {
       String numbers = query.replace("Which of the following numbers is the largest: ", "");
       String number = numbers.replace("?", "");
-      
+
       String[] singleNumbers = number.split(",");
       ArrayList<Integer> trimmedNos = new ArrayList<>();
 
@@ -38,6 +38,21 @@ public class QueryProcessor {
 
       
       return String.valueOf(max);
+    }
+
+    if (query.toLowerCase().contains("plus")) {
+
+      String splitQuery = query.replace("What is", "");
+      String removePlus = splitQuery.replace("plus", "");
+      String removeQuestion = removePlus.replace("?", "");
+      String[] numbers = removeQuestion.trim().split("  ");
+      int sum = 0;
+
+      for (String n: numbers) {
+        sum += (int)Integer.parseInt(n.trim());
+      }
+
+      return String.valueOf(sum);
     }
 
     return "";
